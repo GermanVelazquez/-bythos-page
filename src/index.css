@@ -1,0 +1,14 @@
+@import './styles/variables.css';
+@import './styles/base.css';
+@import './components/common/Logo/Logo.css';
+@import './components/common/Button/Button.css';
+@import './components/common/SectionHeader/SectionHeader.css';
+@import './components/Navbar/Navbar.css';
+@import './components/Hero/Hero.css';
+@import './components/Mockup/Mockup.css';
+@import './components/Features/Features.css';
+@import './components/HowItWorks/HowItWorks.css';
+@import './components/Privacy/Privacy.css';
+@import './components/Export/Export.css';
+@import './components/FinalCta/FinalCta.css';
+@import './components/Footer/Footer.css';

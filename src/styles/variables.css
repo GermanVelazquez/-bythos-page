@@ -1,0 +1,18 @@
+:root {
+  --bg: #0A0A0A;
+  --bg-alt: #0F0F0F;
+  --surface: #141414;
+  --surface-2: #1A1A1A;
+  --surface-3: #202020;
+  --border: #1F1F1F;
+  --border-strong: #2A2A2A;
+  --text: #EDEDED;
+  --text-muted: #8A8A8A;
+  --text-dim: #5A5A5A;
+  --accent: #C8C8C8;
+  --accent-bright: #FFFFFF;
+  --green: #5FA97B;
+  --amber: #C9964A;
+  /* Fixed navbar height (logo 30px + vertical padding), used to offset anchors and hero */
+  --nav-h: 72px;
+}

@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bythos — Tu biblioteca personal de aprendizaje</title>
+<meta name="description" content="Guarda, organiza y domina todo lo que aprendes. Sin cuentas, sin nube, sin distracciones. Todo tuyo, en tu PC." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0A0A0A;
+    --bg-alt: #0F0F0F;
+    --surface: #141414;
+    --surface-2: #1A1A1A;
+    --border: #1F1F1F;
+    --border-strong: #2A2A2A;
+    --text: #EDEDED;
+    --text-muted: #8A8A8A;
+    --text-dim: #5A5A5A;
+    --accent: #C8C8C8;
+    --accent-bright: #FFFFFF;
+    --green: #5FA97B;
+    --amber: #C9964A;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ───────── NAV ───────── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 0;
+    background: rgba(10, 10, 10, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease, padding 0.3s ease;
+  }
+  nav.scrolled {
+    border-bottom-color: var(--border);
+    padding: 14px 0;
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: var(--text);
+  }
+  .nav-logo img { height: 30px; width: auto; display: block; }
+  .nav-logo svg { height: 30px; width: 30px; }
+  .nav-logo-text {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    color: var(--text);
+  }
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+  }
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    padding: 9px 20px;
+    border-radius: 6px;
+    background: var(--text);
+    color: var(--bg) !important;
+    font-weight: 600;
+    font-size: 12px !important;
+    letter-spacing: 0.04em;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .nav-cta:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+  }
+
+  /* ───────── HERO ───────── */
+  .hero {
+    padding: 180px 0 110px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 56px;
+    animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .hero-logo img { height: 130px; width: auto; display: block; }
+  .hero-logo svg { height: 130px; width: 130px; }
+  .hero-wordmark {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: 0.4em;
+    color: var(--accent);
+    padding-left: 0.4em;
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+    animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s backwards;
+  }
+  h1 {
+    font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    margin-bottom: 28px;
+    color: var(--accent-bright);
+    animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s backwards;
+  }
+  .hero-sub {
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
+    color: var(--text-muted);
+    max-width: 580px;
+    margin: 0 auto 44px;
+    font-weight: 400;
+    line-height: 1.7;
+    animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s backwards;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.35s backwards;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 26px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease-out;
+    font-family: inherit;
+  }
+  .btn-primary {
+    background: var(--text);
+    color: var(--bg);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255,255,255,0.08);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border-strong);
+  }
+  .btn-secondary:hover {
+    border-color: var(--text-muted);
+    transform: translateY(-2px);
+  }
+
+  /* ───────── MOCKUP ───────── */
+  .mockup-wrap {
+    margin-top: 90px;
+    animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.5s backwards;
+  }
+  .mockup {
+    max-width: 960px;
+    margin: 0 auto;
+    background: var(--surface);
+    border: 1px solid var(--border-strong);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+  }
+  .mockup-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-2);
+  }
+  .mockup-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: #2A2A2A;
+  }
+  .mockup-title {
+    margin-left: 14px;
+    font-size: 11px;
+    color: var(--text-dim);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  .mockup-body {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    min-height: 400px;
+  }
+  .mockup-sidebar {
+    border-right: 1px solid var(--border);
+    padding: 22px 14px;
+  }
+  .mockup-sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 2px;
+    font-weight: 500;
+  }
+  .mockup-sidebar-item.active {
+    background: var(--surface-2);
+    color: var(--text);
+  }
+  .mockup-sidebar-icon {
+    width: 12px; height: 12px;
+    border-radius: 3px;
+    background: currentColor;
+    opacity: 0.5;
+  }
+  .mockup-main {
+    padding: 26px;
+  }
+  .mockup-main-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .mockup-main-sub {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-bottom: 22px;
+  }
+  .mockup-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .mockup-card {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .mockup-thumb {
+    height: 62px;
+    background: #1E1E1E;
+    position: relative;
+  }
+  .mockup-thumb.b1 { background: linear-gradient(135deg, #1F1F1F, #2A2A2A); }
+  .mockup-thumb.b2 { background: linear-gradient(135deg, #222, #2E2E2E); }
+  .mockup-thumb.b3 { background: linear-gradient(135deg, #1A1A1A, #262626); }
+  .mockup-badge {
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: rgba(0,0,0,0.6);
+    font-size: 8px;
+    color: #B8B8B8;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+  .mockup-card-body {
+    padding: 11px;
+  }
+  .mockup-card-title {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.35;
+    margin-bottom: 10px;
+  }
+  .mockup-progress {
+    height: 2px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .mockup-progress-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: #4A4A4A;
+  }
+  .mockup-progress-fill.done { width: 100%; background: var(--green); }
+  .mockup-progress-fill.mid { width: 55%; background: #5A5A5A; }
+  .mockup-progress-fill.low { width: 20%; background: var(--amber); }
+
+  /* ───────── SECTIONS ───────── */
+  section { padding: 120px 0; border-bottom: 1px solid var(--border); }
+
+  .section-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+  }
+  .section-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    margin-bottom: 18px;
+    color: var(--accent-bright);
+  }
+  .section-desc {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 580px;
+    line-height: 1.7;
+  }
+  .section-header {
+    text-align: center;
+    margin-bottom: 72px;
+  }
+  .section-header .section-desc { margin: 0 auto; }
+
+  /* ───────── FEATURES ───────── */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .feature {
+    padding: 36px 30px;
+    background: var(--bg);
+    transition: background 0.25s ease;
+    position: relative;
+  }
+  .feature:hover { background: var(--surface); }
+  .feature-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--surface-2);
+    border: 1px solid var(--border-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+    color: var(--accent);
+  }
+  .feature-icon svg { width: 18px; height: 18px; }
+  .feature h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text);
+    letter-spacing: -0.005em;
+  }
+  .feature p {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  /* ───────── STEPS ───────── */
+  .steps-section {
+    background: var(--bg-alt);
+  }
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+  }
+  .step {
+    position: relative;
+  }
+  .step-num {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 24px;
+    display: block;
+    opacity: 0.9;
+  }
+  .step h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .step p {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* ───────── PRIVACY ───────── */
+  .privacy-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+  }
+  .privacy-content .section-label { display: block; }
+  .privacy-content .section-title { margin-bottom: 22px; }
+  .privacy-content .section-desc { margin-bottom: 36px; }
+  .privacy-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .privacy-points li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 0.93rem;
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .privacy-points svg {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    color: var(--green);
+    margin-top: 4px;
+  }
+  .privacy-visual {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--bg-alt);
+    position: relative;
+    overflow: hidden;
+  }
+  .privacy-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    width: 80%;
+    height: 80%;
+    gap: 1px;
+    opacity: 0.15;
+  }
+  .privacy-grid span {
+    background: var(--text);
+    border-radius: 1px;
+  }
+  .privacy-grid span.off { background: transparent; }
+  .privacy-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+  .privacy-center svg {
+    width: 44px;
+    height: 44px;
+    color: var(--text);
+  }
+  .privacy-center span {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  /* ───────── EXPORT ───────── */
+  .export {
+    background: var(--bg-alt);
+    text-align: center;
+  }
+  .export .section-desc { margin: 0 auto 64px; }
+  .export-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .export-item {
+    padding: 32px 16px;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    transition: background 0.25s ease;
+  }
+  .export-item:hover { background: var(--surface); }
+  .export-item svg { width: 24px; height: 24px; color: var(--accent); }
+  .export-item span {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text);
+    letter-spacing: 0.01em;
+  }
+
+  /* ───────── CTA FINAL ───────── */
+  .cta-final {
+    text-align: center;
+    padding: 140px 0;
+    border-bottom: none;
+  }
+  .cta-final h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 22px;
+    color: var(--accent-bright);
+  }
+  .cta-final p {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 520px;
+    margin: 0 auto 44px;
+    line-height: 1.7;
+  }
+  .cta-meta {
+    margin-top: 24px;
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* ───────── FOOTER ───────── */
+  footer {
+    padding: 48px 0;
+    border-top: 1px solid var(--border);
+  }
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-muted);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+  }
+  .footer-logo img { height: 24px; width: auto; }
+  .footer-logo svg { height: 24px; width: 24px; }
+  .footer-links {
+    display: flex;
+    gap: 32px;
+  }
+  .footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    transition: color 0.2s ease;
+  }
+  .footer-links a:hover { color: var(--text); }
+  .footer-copy {
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+  }
+
+  /* ───────── ANIMATIONS ───────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ───────── RESPONSIVE ───────── */
+  @media (max-width: 900px) {
+    .container { padding: 0 24px; }
+    .nav-links a:not(.nav-cta) { display: none; }
+    .hero { padding: 140px 0 80px; }
+    .hero-logo img, .hero-logo svg { height: 100px; }
+    .hero-wordmark { font-size: 20px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .steps-grid { grid-template-columns: 1fr; gap: 48px; }
+    .privacy-inner { grid-template-columns: 1fr; gap: 48px; }
+    .privacy-visual { max-width: 340px; margin: 0 auto; width: 100%; }
+    .export-grid { grid-template-columns: repeat(2, 1fr); }
+    .mockup-body { grid-template-columns: 1fr; }
+    .mockup-sidebar { display: none; }
+    .mockup-grid { grid-template-columns: repeat(2, 1fr); }
+    section { padding: 80px 0; }
+    .footer-inner { justify-content: center; text-align: center; flex-direction: column; }
+  }
+  @media (max-width: 500px) {
+    .mockup-grid { grid-template-columns: 1fr; }
+    .export-grid { grid-template-columns: 1fr; }
+    .hero-ctas { flex-direction: column; align-items: stretch; }
+    .btn { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ───────── NAV ───────── -->
+<nav id="nav">
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo">
+      <!-- Reemplaza este SVG por: <img src="logo.png" alt="Bythos" /> -->
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 14 C24 14 10 32 10 50 C10 68 24 86 50 86 C76 86 90 68 90 50 C90 32 76 14 50 14 Z" stroke="#8A8A8A" stroke-width="2.5" fill="none" opacity="0.25"/>
+        <path d="M24 50 C24 36 36 26 50 26 C64 26 76 36 76 50" stroke="#C8C8C8" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M24 50 C24 64 36 74 50 74 C64 74 76 64 76 50" stroke="#C8C8C8" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M33 43 C40 38 60 38 67 43" stroke="#A0A0A0" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M33 57 C40 62 60 62 67 57" stroke="#A0A0A0" stroke-width="2" fill="none" stroke-linecap="round"/>
+      </svg>
+      <span class="nav-logo-text">BYTHOS</span>
+    </a>
+    <div class="nav-links">
+      <a href="#features">Características</a>
+      <a href="#how">Cómo funciona</a>
+      <a href="#privacy">Privacidad</a>
+      <a href="#download" class="nav-cta">Descargar</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ───────── HERO ───────── -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-logo">
+      <!-- Reemplaza este SVG por: <img src="logo.png" alt="Bythos" /> -->
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 12 C22 12 8 32 8 50 C8 68 22 88 50 88 C78 88 92 68 92 50 C92 32 78 12 50 12 Z" stroke="#8A8A8A" stroke-width="2" fill="none" opacity="0.2"/>
+        <path d="M22 50 C22 36 34 24 50 24 C66 24 78 36 78 50" stroke="#C8C8C8" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        <path d="M22 50 C22 64 34 76 50 76 C66 76 78 64 78 50" stroke="#C8C8C8" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        <path d="M31 43 C39 37 61 37 69 43" stroke="#A0A0A0" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M31 57 C39 63 61 63 69 57" stroke="#A0A0A0" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M18 50 L82 50" stroke="#8A8A8A" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+      </svg>
+      <span class="hero-wordmark">BYTHOS</span>
+    </div>
+
+    <div class="hero-eyebrow">Aplicación de escritorio · Windows</div>
+
+    <h1>Tu biblioteca personal<br/>de aprendizaje</h1>
+
+    <p class="hero-sub">
+      Guarda links de YouTube y artículos, organízalos por tema y domina todo lo que aprendes.
+      Sin cuentas, sin nube. Todo tuyo, en tu PC.
+    </p>
+
+    <div class="hero-ctas">
+      <a href="#download" class="btn btn-primary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Descargar para Windows
+      </a>
+      <a href="#how" class="btn btn-secondary">Ver cómo funciona</a>
+    </div>
+
+    <!-- ── MOCKUP ── -->
+    <div class="mockup-wrap">
+      <div class="mockup">
+        <div class="mockup-bar">
+          <span class="mockup-dot"></span>
+          <span class="mockup-dot"></span>
+          <span class="mockup-dot"></span>
+          <span class="mockup-title">BYTHOS — Biblioteca</span>
+        </div>
+        <div class="mockup-body">
+          <div class="mockup-sidebar">
+            <div class="mockup-sidebar-item active"><span class="mockup-sidebar-icon"></span>Biblioteca</div>
+            <div class="mockup-sidebar-item"><span class="mockup-sidebar-icon"></span>Carpetas</div>
+            <div class="mockup-sidebar-item"><span class="mockup-sidebar-icon"></span>En curso</div>
+            <div class="mockup-sidebar-item"><span class="mockup-sidebar-icon"></span>Completados</div>
+            <div class="mockup-sidebar-item"><span class="mockup-sidebar-icon"></span>Exportar</div>
+          </div>
+          <div class="mockup-main">
+            <div class="mockup-main-title">Todos los recursos</div>
+            <div class="mockup-main-sub">142 elementos · 38 completados</div>
+            <div class="mockup-grid">
+              <div class="mockup-card">
+                <div class="mockup-thumb b1"><span class="mockup-badge">YOUTUBE</span></div>
+                <div class="mockup-card-body">
+                  <div class="mockup-card-title">Introducción a Go</div>
+                  <div class="mockup-progress"><div class="mockup-progress-fill done"></div></div>
+                </div>
+              </div>
+              <div class="mockup-card">
+                <div class="mockup-thumb b2"><span class="mockup-badge">ARTÍCULO</span></div>
+                <div class="mockup-card-body">
+                  <div class="mockup-card-title">Diseño de APIs REST</div>
+                  <div class="mockup-progress"><div class="mockup-progress-fill mid"></div></div>
+                </div>
+              </div>
+              <div class="mockup-card">
+                <div class="mockup-thumb b3"><span class="mockup-badge">YOUTUBE</span></div>
+                <div class="mockup-card-body">
+                  <div class="mockup-card-title">SQLite en producción</div>
+                  <div class="mockup-progress"><div class="mockup-progress-fill low"></div></div>
+                </div>
+              </div>
+              <div class="mockup-card">
+                <div class="mockup-thumb b2"><span class="mockup-badge">ARTÍCULO</span></div>
+                <div class="mockup-card-body">
+                  <div class="mockup-card-title">Arquitectura React</div>
+                  <div class="mockup-progress"><div class="mockup-progress-fill done"></div></div>
+                </div>
+              </div>
+              <div class="mockup-card">
+                <div class="mockup-thumb b1"><span class="mockup-badge">YOUTUBE</span></div>
+                <div class="mockup-card-body">
+                  <div class="mockup-card-title">Patrones en Go</div>
+                  <div class="mockup-progress"><div class="mockup-progress-fill mid"></div></div>
+                </div>
+              </div>
+              <div class="mockup-card">
+                <div class="mockup-thumb b3"><span class="mockup-badge">ARTÍCULO</span></div>
+                <div class="mockup-card-body">
+                  <div class="mockup-card-title">Optimización de queries</div>
+                  <div class="mockup-progress"><div class="mockup-progress-fill low"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ───────── FEATURES ───────── -->
+<section id="features">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">Características</div>
+      <h2 class="section-title">Todo lo que necesitas.<br/>Nada que te distraiga.</h2>
+      <p class="section-desc">Una herramienta enfocada en lo esencial: capturar, organizar y avanzar.</p>
+    </div>
+
+    <div class="features-grid reveal">
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v20M2 12h20"/>
+          </svg>
+        </div>
+        <h3>Guarda con un clic</h3>
+        <p>Extensión de Chrome que captura cualquier pestaña abierta sin interrumpir tu flujo.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="M21 21l-4.35-4.35"/>
+          </svg>
+        </div>
+        <h3>Detección automática</h3>
+        <p>El backend en Go extrae título, imagen y tipo de cada link sin que tengas que escribir nada.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          </svg>
+        </div>
+        <h3>Organización por tema</h3>
+        <p>Carpetas y etiquetas para agrupar recursos según tu propio sistema mental.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 11l3 3L22 4"/>
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+          </svg>
+        </div>
+        <h3>Progreso visible</h3>
+        <p>Marca cada recurso como pendiente, en curso o completado. Barras claras, cero ambigüedad.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3v12"/>
+            <path d="M7 10l5 5 5-5"/>
+            <path d="M5 21h14"/>
+          </svg>
+        </div>
+        <h3>Exporta a donde quieras</h3>
+        <p>Markdown, Gemini, NotebookLM o Google Drive. Tu conocimiento, portable y sin ataduras.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3>100% local. 100% tuyo.</h3>
+        <p>Base SQLite en tu PC. Sin cuentas, sin nube, sin tracking. Un solo .exe y listo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── HOW ───────── -->
+<section id="how" class="steps-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">Cómo funciona</div>
+      <h2 class="section-title">Tres pasos. Siempre los mismos.</h2>
+      <p class="section-desc">Sin curvas de aprendizaje. Sin onboarding de veinte pantallas.</p>
+    </div>
+
+    <div class="steps-grid reveal">
+      <div class="step">
+        <span class="step-num">01</span>
+        <h3>Guarda cualquier link</h3>
+        <p>Con la extensión de Chrome o pegando la URL directamente. Bythos detecta el resto automáticamente.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <h3>Organízalo en carpetas</h3>
+        <p>Agrupa por tema, proyecto o cualquier criterio tuyo. Encuentra todo en segundos.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <h3>Marca tu avance y exporta</h3>
+        <p>Actualiza el estado, revisa tu progreso y exporta a Markdown o tus herramientas favoritas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── PRIVACY ───────── -->
+<section id="privacy">
+  <div class="container">
+    <div class="privacy-inner">
+      <div class="privacy-content reveal">
+        <div class="section-label">Privacidad</div>
+        <h2 class="section-title">Tus datos nunca salen de tu PC.</h2>
+        <p class="section-desc">Bythos está construido sobre una premisa simple: tu conocimiento es tuyo, y solo tuyo.</p>
+        <ul class="privacy-points">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Base SQLite local en tu disco
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Sin cuentas, sin registro, sin email
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Sin analytics ni telemetría
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Un solo .exe, portable y discreto
+          </li>
+        </ul>
+      </div>
+
+      <div class="privacy-visual reveal">
+        <div class="privacy-grid">
+          <span></span><span></span><span class="off"></span><span></span><span></span><span></span>
+          <span></span><span class="off"></span><span></span><span></span><span class="off"></span><span></span>
+          <span class="off"></span><span></span><span></span><span class="off"></span><span></span><span></span>
+          <span></span><span></span><span class="off"></span><span></span><span></span><span class="off"></span>
+          <span></span><span class="off"></span><span></span><span></span><span class="off"></span><span></span>
+          <span></span><span></span><span></span><span class="off"></span><span></span><span></span>
+        </div>
+        <div class="privacy-center">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+          <span>Local · Offline</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── EXPORT ───────── -->
+<section class="export">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">Exportación</div>
+      <h2 class="section-title">Tu conocimiento, donde lo necesites.</h2>
+      <p class="section-desc">Exporta tus recursos y notas a los formatos y herramientas que ya usas para repasar.</p>
+    </div>
+
+    <div class="export-grid reveal">
+      <div class="export-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+        </svg>
+        <span>Markdown</span>
+      </div>
+      <div class="export-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2l3 6 6 1-4.5 4.5 1 6L12 17l-5.5 2.5 1-6L3 9l6-1z"/>
+        </svg>
+        <span>Gemini</span>
+      </div>
+      <div class="export-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+        </svg>
+        <span>NotebookLM</span>
+      </div>
+      <div class="export-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L2 12l10 10 10-10z"/>
+        </svg>
+        <span>Google Drive</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── CTA FINAL ───────── -->
+<section class="cta-final" id="download">
+  <div class="container reveal">
+    <h2>Empieza tu biblioteca hoy.</h2>
+    <p>Sin cuentas, sin suscripciones, sin nube. Solo tú y todo lo que quieres aprender.</p>
+    <div class="hero-ctas">
+      <a href="#" class="btn btn-primary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Descargar .exe gratis
+      </a>
+    </div>
+    <div class="cta-meta">Windows 10 · 11 · Sin instalación · ~15 MB</div>
+  </div>
+</section>
+
+<!-- ───────── FOOTER ───────── -->
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-logo">
+      <!-- Reemplaza por: <img src="logo.png" alt="Bythos" /> -->
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24 50 C24 36 36 26 50 26 C64 26 76 36 76 50" stroke="#8A8A8A" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        <path d="M24 50 C24 64 36 74 50 74 C64 74 76 64 76 50" stroke="#8A8A8A" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      </svg>
+      <span>BYTHOS</span>
+    </div>
+    <div class="footer-links">
+      <a href="#features">Características</a>
+      <a href="#privacy">Privacidad</a>
+      <a href="#download">Descargar</a>
+    </div>
+    <div class="footer-copy">© 2025 Bythos. Hecho para aprender mejor.</div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll state
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

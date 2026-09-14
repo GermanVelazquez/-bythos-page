@@ -1,0 +1,128 @@
+footer {
+  padding: 48px 0;
+  border-top: 1px solid var(--border);
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+}
+
+.footer-logo img { height: 24px; width: auto; }
+.footer-logo svg { height: 24px; width: 24px; }
+
+.footer-links {
+  display: flex;
+  gap: 32px;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover { color: var(--text); }
+
+.footer-author {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+
+.footer-author-name {
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.footer-author-stack {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.footer-author-stack .footer-author-name {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.footer-author-by {
+  font-size: 11px;
+  color: var(--text-muted);
+  opacity: 0.7;
+  white-space: nowrap;
+}
+
+.footer-social {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 8px 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  background: var(--surface, transparent);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.footer-social a svg {
+  flex-shrink: 0;
+}
+
+.footer-social-label {
+  line-height: 1;
+}
+
+.footer-social a:hover {
+  color: #fff;
+  border-color: var(--text-muted);
+  background: var(--surface-2, transparent);
+  transform: translateY(-1px);
+}
+
+.footer-social a:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+.footer-copy {
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 900px) {
+  .footer-inner { justify-content: center; text-align: center; flex-direction: column; }
+  .footer-author { justify-content: center; flex-wrap: wrap; flex-direction: column; gap: 12px; }
+  .footer-social { justify-content: center; flex-wrap: wrap; }
+}

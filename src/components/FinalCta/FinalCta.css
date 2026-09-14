@@ -1,0 +1,31 @@
+.cta-final {
+  text-align: center;
+  padding: 140px 0;
+  border-bottom: none;
+}
+
+.cta-final h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 22px;
+  color: var(--accent-bright);
+}
+
+.cta-final p {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 520px;
+  margin: 0 auto 44px;
+  line-height: 1.7;
+}
+
+.cta-meta {
+  margin-top: 24px;
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
