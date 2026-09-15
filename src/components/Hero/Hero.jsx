@@ -14,7 +14,7 @@ export function Hero() {
         <div className="hero-eyebrow">Aplicación de escritorio · Windows</div>
 
         <h1>
-          Tu biblioteca personal
+          Bythos: tu biblioteca personal
           <br />
           de aprendizaje
         </h1>
